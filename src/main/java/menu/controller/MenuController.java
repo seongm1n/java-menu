@@ -45,14 +45,16 @@ public class MenuController {
     private void menuRecommendations(Coach coach) {
         String[] menus = new String[5];
         for (int i = 0; i < 5; i++) {
-            while (true) {
-                String menu = menuRepository.getMenu(i);
-                if (coach.checkMenu(menu)) {
-                    menus[i] = menu;
-                    break;
-                }
-            }
+            menus[i] = selectMenu(i, coach);
         }
         OutputView.printMenu(coach.getName(), menus);
+    }
+
+    private String selectMenu(int index, Coach coach) {
+        String menu = menuRepository.getMenu(category[index]);
+        if (!coach.checkMenu(menu)) {
+            return selectMenu(index, coach);
+        }
+        return menu;
     }
 }
