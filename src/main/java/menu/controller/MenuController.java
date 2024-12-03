@@ -12,8 +12,9 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 public class MenuController {
-    List<Coach> coaches = new ArrayList<>();
     MenuRepository menuRepository = new MenuRepository();
+    Validate validate = new Validate();
+    List<Coach> coaches = new ArrayList<>();
     int[] category;
 
     public void run() {
@@ -28,6 +29,10 @@ public class MenuController {
     private void setCoaches() {
         OutputView.printInsertCoach();
         String[] inputCoaches = InputView.insertCoach().split(",");
+        if (!validate.validateCoach(inputCoaches)) {
+            setCoaches();
+            return;
+        }
         for (String inputCoach : inputCoaches) {
             Coach coach = new Coach(inputCoach);
             OutputView.printInsertNotFood(coach.getName());

@@ -1,7 +1,5 @@
 package menu.view;
 
-import menu.model.Coach;
-
 public class OutputView {
     private static final String START = "점심 메뉴 추천을 시작합니다.";
     private static final String INSERT_COACH_NAME = "코치의 이름을 입력해 주세요. (, 로 구분)";
@@ -61,5 +59,13 @@ public class OutputView {
             }
         }
         System.out.println(PRINT_END);
+    }
+
+    public static void printCoachesNumberError() {
+        System.out.println("[ERROR] 코치는 최소 2명, 최대 5명까지입니다.");
+    }
+
+    public static void printCoachesNameError() {
+        System.out.println("[ERROR] 코치의 이름은 최소 2글자, 최대 4글자입니다.");
     }
 }
